@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="dashboard">
+
+    <h2>Upload Your Image 📤</h2>
+
+    <form method="POST" enctype="multipart/form-data" class="upload-box">
+        {% csrf_token %}
+        <input type="file" name="image" required>
+        <button>Upload Image</button>
+    </form>
+
+    {% if image_url %}
+        <div class="image-preview">
+            <h3>Uploaded Image ✅</h3>
+            <img src="{{ image_url }}">
+        </div>
+    {% endif %}
+
+</div>
+{% endblock %}
