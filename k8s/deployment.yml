@@ -1,0 +1,33 @@
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: django-dep
+  namespace: django
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: django
+
+  template:
+     metadata:
+        name: django
+        labels:
+          app: django
+     spec:
+       containers:
+       - name: django
+         image: nitinpanwar6963/image-upload
+         ports:
+           - containerPort: 8000
+         env:
+         - name: AWS_ACCESS_KEY_ID
+           value: ""
+         - name: AWS_SECRET_ACCESS_KEY
+           value: ""
+         - name: AWS_REGION
+           value: ""
+         - name: AWS_S3_BUCKET_NAME
+           value: ""
+         - name: DYNAMODB_TABLE_NAME
+           value: ""
